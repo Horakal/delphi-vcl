@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F4BD0ADE-F3CB-4E68-B991-60CD24582988}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\ProductVclApp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ProductVclAppTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProductVclApp">
+        <MSBuild Projects="..\ProductVclApp.dproj"/>
+    </Target>
+    <Target Name="ProductVclApp:Clean">
+        <MSBuild Projects="..\ProductVclApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProductVclApp:Make">
+        <MSBuild Projects="..\ProductVclApp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProductVclAppTests">
+        <MSBuild Projects="ProductVclAppTests.dproj"/>
+    </Target>
+    <Target Name="ProductVclAppTests:Clean">
+        <MSBuild Projects="ProductVclAppTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProductVclAppTests:Make">
+        <MSBuild Projects="ProductVclAppTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProductVclApp;ProductVclAppTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProductVclApp:Clean;ProductVclAppTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProductVclApp:Make;ProductVclAppTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,0 +1,5 @@
+*.dcu
+*.exe
+*.log
+__history/
+Win64/
